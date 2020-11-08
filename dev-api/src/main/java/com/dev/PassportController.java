@@ -1,5 +1,6 @@
 package com.dev;
 
+import com.dev.JSONResult.JSONResult;
 import com.dev.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +16,16 @@ public class PassportController {
     private UserService userService;
 
     @GetMapping("/userIsExist")
-    public int userIsExist(@RequestParam String username){
+    public JSONResult userIsExist(@RequestParam String username){
         //判断用户名不能为空
         if(StringUtils.isBlank(username)){
-            return 500;
+            return JSONResult.errorMsg("用户名不能为空");
         }
-        //如果没有查询到，返回500
+        //用户名已存在
         Boolean isExist = userService.queryUserIsExist(username);
         if(isExist){
-            return 500;
+            return JSONResult.errorMsg("用户名已存在");
         }
-        return 200;
+        return JSONResult.ok();
     }
 }
