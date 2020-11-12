@@ -1,6 +1,6 @@
 package com.dev;
 
-import com.dev.JSONResult.JSONResult;
+import com.dev.Utils.JSONResult;
 import com.dev.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
