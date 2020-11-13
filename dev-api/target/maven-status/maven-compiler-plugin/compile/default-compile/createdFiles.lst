@@ -1,3 +1,4 @@
+com\dev\config\CorsConfig.class
 com\dev\config\Swagger2.class
 com\dev\controller\HelloController.class
 com\dev\Application.class
