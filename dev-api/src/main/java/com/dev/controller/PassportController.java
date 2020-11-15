@@ -77,7 +77,18 @@ public class PassportController {
         if(loginResult==null){
             return JSONResult.errorMsg("用户名和密码不正确");
         }
-
+        loginResult = setNullProperty(loginResult);
+        System.out.println(loginResult);
         return JSONResult.ok(loginResult);
+    }
+
+    private Users setNullProperty(Users loginResult){
+        loginResult.setPassword(null);
+        loginResult.setMobile(null);
+        loginResult.setEmail(null);
+        loginResult.setCreatedTime(null);
+        loginResult.setUpdatedTime(null);
+        loginResult.setBirthday(null);
+        return loginResult;
     }
 }
