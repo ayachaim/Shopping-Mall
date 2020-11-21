@@ -1,6 +1,8 @@
 package com.dev.controller;
 
+import com.dev.Utils.CookieUtils;
 import com.dev.Utils.JSONResult;
+import com.dev.Utils.JsonUtils;
 import com.dev.Utils.MD5Utils;
 import com.dev.pojo.Users;
 import com.dev.pojo.bo.UserBo;
@@ -10,6 +12,9 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Api(value = "注册登录",tags = {"用于注册登录相关接口"})
 @RestController
@@ -35,7 +40,9 @@ public class PassportController {
 
     @ApiOperation(value = "用户注册",notes = "用户注册",httpMethod = "POST")
     @PostMapping("/register")
-    public JSONResult register(@RequestBody UserBo userBo){
+    public JSONResult register(@RequestBody UserBo userBo,
+                               HttpServletRequest request,
+                               HttpServletResponse response){
 
         String username = userBo.getUsername();
         String password = userBo.getPassword();
@@ -58,14 +65,18 @@ public class PassportController {
             return JSONResult.errorMsg("两次输入密码必须一致");
         }
         //注册
-        userService.createUser(userBo);
-
+        Users loginResult=userService.createUser(userBo);
+        loginResult = setNullProperty(loginResult);
+        //设置cookie
+        CookieUtils.setCookie(request,response,"user", JsonUtils.objectToJson(loginResult),true);
         return JSONResult.ok();
     }
 
     @ApiOperation(value = "用户登录",notes = "用户登录",httpMethod = "POST")
     @PostMapping("/login")
-    public JSONResult login(@RequestBody UserBo userBo) throws Exception{
+    public JSONResult login(@RequestBody UserBo userBo,
+                            HttpServletRequest request,
+                            HttpServletResponse response) throws Exception{
         String username = userBo.getUsername();
         String password = userBo.getPassword();
         //判断用户密码不能为空
@@ -78,10 +89,15 @@ public class PassportController {
             return JSONResult.errorMsg("用户名和密码不正确");
         }
         loginResult = setNullProperty(loginResult);
-        System.out.println(loginResult);
+        //设置cookie
+        CookieUtils.setCookie(request,response,"user", JsonUtils.objectToJson(loginResult),true);
         return JSONResult.ok(loginResult);
     }
 
+    /**
+     * @param loginResult
+     * @return loginResult
+     */
     private Users setNullProperty(Users loginResult){
         loginResult.setPassword(null);
         loginResult.setMobile(null);
@@ -91,4 +107,14 @@ public class PassportController {
         loginResult.setBirthday(null);
         return loginResult;
     }
+
+//    @ApiOperation(value = "用户退出",notes = "用户退出",httpMethod = "POST")
+//    @PostMapping("/logout")
+//    public JSONResult logout(@RequestParam String userId,
+//                             HttpServletRequest request,
+//                             HttpServletResponse response) throws Exception{
+//
+//
+//        return JSONResult.ok(loginResult);
+//    }
 }
