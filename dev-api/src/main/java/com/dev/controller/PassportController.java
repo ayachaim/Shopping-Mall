@@ -108,13 +108,17 @@ public class PassportController {
         return loginResult;
     }
 
-//    @ApiOperation(value = "用户退出",notes = "用户退出",httpMethod = "POST")
-//    @PostMapping("/logout")
-//    public JSONResult logout(@RequestParam String userId,
-//                             HttpServletRequest request,
-//                             HttpServletResponse response) throws Exception{
-//
-//
-//        return JSONResult.ok(loginResult);
-//    }
+    @ApiOperation(value = "用户退出",notes = "用户退出",httpMethod = "POST")
+    @PostMapping("/logout")
+    public JSONResult logout(@RequestParam String userId,
+                             HttpServletRequest request,
+                             HttpServletResponse response){
+        //没有清除购物车
+        //分布式需要清除用户数据
+
+
+        //清除登录用户cookie
+        CookieUtils.deleteCookie(request,response,"user");
+        return JSONResult.ok();
+    }
 }

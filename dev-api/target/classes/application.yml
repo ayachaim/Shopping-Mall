@@ -33,11 +33,13 @@ spring:
       max-lifetime: 1800000           # 连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟 1800000ms
       connection-test-query: SELECT 1
 ###########################################################
-# ## 配置数据源信息 #
+# ## 配置mybatis #
 ############################################################
-#mybatis:
-  type-aliases-package: com.dev.pojo # 所有POJO类所在包路径
-  mapper-locations: classpath:mapper/*.xml # mapper映射文件
+mybatis:
+  type-aliases-package: com.dev.pojo        # 所有POJO类所在包路径
+  mapper-locations: classpath:com.dev.mapper/*.xml   # mapper映射文件 注意映射路径
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  #控制台输出sql语句
 ###########################################################
 # ## mybatis mapper 配置 #
 ###########################################################
@@ -46,3 +48,6 @@ mapper:
   mappers: com.dev.my.mapper.MyMapper
   not-empty: false
   identity: MYSQL
+
+
+

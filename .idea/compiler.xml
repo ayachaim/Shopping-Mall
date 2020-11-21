@@ -13,7 +13,13 @@
         <module name="dev-api" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="14" />
+    <bytecodeTargetLevel target="14">
+      <module name="shopping-mall-api" target="1.8" />
+      <module name="shopping-mall-common" target="1.8" />
+      <module name="shopping-mall-mapper" target="1.8" />
+      <module name="shopping-mall-pojo" target="1.8" />
+      <module name="shopping-mall-service" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -22,6 +28,11 @@
       <module name="dev-mapper" options="-parameters" />
       <module name="dev-pojo" options="-parameters" />
       <module name="dev-service" options="-parameters" />
+      <module name="shopping-mall-api" options="-parameters" />
+      <module name="shopping-mall-common" options="-parameters" />
+      <module name="shopping-mall-mapper" options="-parameters" />
+      <module name="shopping-mall-pojo" options="-parameters" />
+      <module name="shopping-mall-service" options="-parameters" />
     </option>
   </component>
 </project>

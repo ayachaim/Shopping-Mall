@@ -9,7 +9,6 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.dev.mapper")
-//扫描所有包
 @ComponentScan(basePackages = {"com.dev","org.n3r.idworker"})
 @EnableTransactionManagement
 public class Application {

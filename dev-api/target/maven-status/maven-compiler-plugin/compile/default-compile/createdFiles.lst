@@ -1,5 +1,6 @@
 com\dev\config\Swagger2.class
 com\dev\Application.class
+com\dev\controller\PassportController.class
 com\dev\aspect\ServiceLogAspect.class
 com\dev\config\CorsConfig.class
 com\dev\controller\HelloController.class

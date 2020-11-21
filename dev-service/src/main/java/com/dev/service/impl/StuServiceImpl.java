@@ -21,18 +21,4 @@ public class StuServiceImpl implements StuService {
         return itemsImgMapper.selectByPrimaryKey(id);
     }
 
-    @Override
-    public void saveStu() {
-
-    }
-
-    @Override
-    public void updateStu() {
-
-    }
-
-    @Override
-    public void deleteStu() {
-
-    }
 }
