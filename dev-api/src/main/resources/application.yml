@@ -38,7 +38,7 @@ spring:
 ############################################################
 mybatis:
   type-aliases-package: com.dev.pojo        # 所有POJO类所在包路径
-  mapper-locations: classpath:com.dev.mapper/*.xml   # mapper映射文件 注意映射路径
+  mapper-locations: classpath*:mapper/*.xml   # mapper映射文件 注意映射路径
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  #控制台输出sql语句
 
