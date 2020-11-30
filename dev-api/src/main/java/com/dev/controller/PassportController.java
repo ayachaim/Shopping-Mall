@@ -4,12 +4,15 @@ import com.dev.Utils.CookieUtils;
 import com.dev.Utils.JSONResult;
 import com.dev.Utils.JsonUtils;
 import com.dev.Utils.MD5Utils;
+import com.dev.aspect.ServiceLogAspect;
 import com.dev.pojo.Users;
 import com.dev.pojo.bo.UserBo;
 import com.dev.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 public class PassportController {
     @Autowired
     private UserService userService;
+    public static final Logger logger = LoggerFactory.getLogger(ServiceLogAspect.class);
 
     @ApiOperation(value = "用户名是否存在",notes = "用户名是否存在",httpMethod = "GET")
     @GetMapping("/userIsExist")
@@ -43,6 +47,7 @@ public class PassportController {
     public JSONResult register(@RequestBody UserBo userBo,
                                HttpServletRequest request,
                                HttpServletResponse response){
+
 
         String username = userBo.getUsername();
         String password = userBo.getPassword();
@@ -66,6 +71,7 @@ public class PassportController {
         }
         //注册
         Users loginResult=userService.createUser(userBo);
+
         loginResult = setNullProperty(loginResult);
         //设置cookie
         CookieUtils.setCookie(request,response,"user", JsonUtils.objectToJson(loginResult),true);
