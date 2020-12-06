@@ -17,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("index")
 public class IndexController {
+
     @Autowired
     private CarouselService carouselService;
 
