@@ -8,6 +8,7 @@ target
 /bin
 */target/*
 /logs
+*.iml
 */out/
 # User-specific stuff
 
