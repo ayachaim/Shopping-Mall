@@ -55,7 +55,7 @@ public class IndexController {
         return JSONResult.ok(list);
     }
 
-    @ApiOperation(value = "获取一级商品6个子分类",notes = "获取一级商品6个子分类",httpMethod = "GET")
+    @ApiOperation(value = "获取一级商品6条子分类",notes = "获取一级商品6条子分类",httpMethod = "GET")
         @GetMapping("/lazyItems/id={rootCatId}")
     public JSONResult lazyItems(
             @ApiParam(name = "rootCatId",value = "一级分类id",required = true)
