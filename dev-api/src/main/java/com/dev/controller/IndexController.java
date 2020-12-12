@@ -5,6 +5,7 @@ import com.dev.enums.YesOrNo;
 import com.dev.pojo.Carousel;
 import com.dev.pojo.Category;
 import com.dev.pojo.vo.CategoryVO;
+import com.dev.pojo.vo.LazyItemsVO;
 import com.dev.service.CarouselService;
 import com.dev.service.CategoryService;
 import io.swagger.annotations.Api;
@@ -51,6 +52,18 @@ public class IndexController {
             return JSONResult.errorMsg("分类不存在");
         }
         List<CategoryVO> list =  categoryService.querySubCatList(rootCatId);
+        return JSONResult.ok(list);
+    }
+
+    @ApiOperation(value = "获取一级商品6个子分类",notes = "获取一级商品6个子分类",httpMethod = "GET")
+        @GetMapping("/lazyItems/id={rootCatId}")
+    public JSONResult lazyItems(
+            @ApiParam(name = "rootCatId",value = "一级分类id",required = true)
+            @PathVariable Integer rootCatId) {
+        if (rootCatId == null){
+            return JSONResult.errorMsg("分类不存在");
+        }
+        List<LazyItemsVO> list =  categoryService.queryLazyItems(rootCatId);
         return JSONResult.ok(list);
     }
 }
