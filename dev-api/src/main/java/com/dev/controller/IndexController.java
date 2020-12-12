@@ -43,6 +43,11 @@ public class IndexController {
         return JSONResult.ok(list);
     }
 
+    /**
+     * 路径参数
+     * @param rootCatId
+     * @return
+     */
     @ApiOperation(value = "获取商品子分类",notes = "获取商品子分类",httpMethod = "GET")
     @GetMapping("/subCatList/id={rootCatId}")
     public JSONResult subCat(
