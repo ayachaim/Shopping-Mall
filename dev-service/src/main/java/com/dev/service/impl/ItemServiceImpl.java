@@ -40,27 +40,30 @@ public class ItemServiceImpl implements ItemService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public List<ItemsImg> quertItemImgList(String id) {
+    public List<ItemsImg> quertItemImgList(String itemId) {
         Example example = new Example(ItemsImg.class);
         Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo("id", id);
-        List<ItemsImg> result = itemsImgMapper.selectByExample(example);
-        return result;
+        //根据外键itemId查询
+        criteria.andEqualTo("itemId", itemId);
+        return itemsImgMapper.selectByExample(example);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public List<ItemsSpec> queryItemSpecList(String id) {
+    public List<ItemsSpec> queryItemSpecList(String itemId) {
         Example example = new Example(ItemsSpec.class);
         Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo("id", id);
-        List<ItemsSpec> result = itemsSpecMapper.selectByExample(example);
-        return result;
+        criteria.andEqualTo("itemId", itemId);
+        return itemsSpecMapper.selectByExample(example);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public ItemsParam queryItemParam(String id) {
-        return itemsParamMapper.selectByPrimaryKey(id);
+    public ItemsParam queryItemParam(String itemId) {
+        Example example = new Example(ItemsParam.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("itemId", itemId);
+        //只返回一条商品记录
+        return itemsParamMapper.selectOneByExample(example);
     }
 }
