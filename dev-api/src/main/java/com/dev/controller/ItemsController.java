@@ -10,6 +10,8 @@ import com.dev.service.ItemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,12 +28,16 @@ public class ItemsController {
     @Autowired
     private ItemService itemService;
 
+    private static final Logger logger = LoggerFactory.getLogger(ItemsController.class);
+
     @ApiOperation(value = "查询商品详情",notes = "查询商品详情",httpMethod = "GET")
     @GetMapping("/detail")
     public JSONResult detail(@RequestParam String itemId) {
+        //判断非空
         if(StringUtils.isBlank(itemId)){
             return JSONResult.errorMsg("商品序号不能为空");
         }
+
         Items items = itemService.queryItemById(itemId);
         List<ItemsImg> itemsImgs = itemService.quertItemImgList(itemId);
         List<ItemsSpec> itemsSpecs = itemService.queryItemSpecList(itemId);
