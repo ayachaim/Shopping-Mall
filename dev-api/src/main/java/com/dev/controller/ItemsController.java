@@ -10,6 +10,7 @@ import com.dev.pojo.vo.ItemInfoVO;
 import com.dev.service.ItemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +35,9 @@ public class ItemsController {
 
     @ApiOperation(value = "查询商品详情",notes = "查询商品详情",httpMethod = "GET")
     @GetMapping("/detail")
-    public JSONResult detail(@RequestParam String itemId) {
+    public JSONResult detail(
+            @ApiParam(name = "itemId",value = "商品id",required = true)
+            @RequestParam String itemId) {
         //判断非空
         if(StringUtils.isBlank(itemId)){
             return JSONResult.errorMsg("商品序号不能为空");
@@ -55,7 +58,9 @@ public class ItemsController {
 
     @ApiOperation(value = "查询商品评价",notes = "查询商品评价",httpMethod = "GET")
     @GetMapping("/comment")
-    public JSONResult comment(@RequestParam String itemId) {
+    public JSONResult comment(
+            @ApiParam(name = "itemId",value = "商品id",required = true)
+            @RequestParam String itemId) {
         //判断非空
         if(StringUtils.isBlank(itemId)){
             return JSONResult.errorMsg("商品序号不能为空");
