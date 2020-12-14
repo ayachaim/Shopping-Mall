@@ -4,6 +4,7 @@ import com.dev.pojo.Items;
 import com.dev.pojo.ItemsImg;
 import com.dev.pojo.ItemsParam;
 import com.dev.pojo.ItemsSpec;
+import com.dev.pojo.vo.CommentCountsVO;
 
 import java.util.List;
 
@@ -35,4 +36,10 @@ public interface ItemService {
      * @return
      */
     public ItemsParam queryItemParam(String id);
+
+    /**
+     * 根据商品id查询商品评价数量(好评，中评，差评)
+     * @param itemId
+     */
+    public CommentCountsVO queryCommentCounts(String itemId);
 }

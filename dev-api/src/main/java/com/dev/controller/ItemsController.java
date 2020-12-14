@@ -5,6 +5,7 @@ import com.dev.pojo.Items;
 import com.dev.pojo.ItemsImg;
 import com.dev.pojo.ItemsParam;
 import com.dev.pojo.ItemsSpec;
+import com.dev.pojo.vo.CommentCountsVO;
 import com.dev.pojo.vo.ItemInfoVO;
 import com.dev.service.ItemService;
 import io.swagger.annotations.Api;
@@ -28,6 +29,7 @@ public class ItemsController {
     @Autowired
     private ItemService itemService;
 
+
     private static final Logger logger = LoggerFactory.getLogger(ItemsController.class);
 
     @ApiOperation(value = "查询商品详情",notes = "查询商品详情",httpMethod = "GET")
@@ -49,5 +51,16 @@ public class ItemsController {
         itemInfoVO.setItemsSpecs(itemsSpecs);
         itemInfoVO.setItemParam(itemParam);
         return JSONResult.ok(itemInfoVO);
+    }
+
+    @ApiOperation(value = "查询商品评价",notes = "查询商品评价",httpMethod = "GET")
+    @GetMapping("/comment")
+    public JSONResult comment(@RequestParam String itemId) {
+        //判断非空
+        if(StringUtils.isBlank(itemId)){
+            return JSONResult.errorMsg("商品序号不能为空");
+        }
+        CommentCountsVO commentResult = itemService.queryCommentCounts(itemId);
+        return JSONResult.ok(commentResult);
     }
 }
