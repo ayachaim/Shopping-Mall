@@ -1,5 +1,7 @@
 package com.dev.pojo.vo;
 
+import java.util.Date;
+
 /**
  * 查询某种商品的评论信息
  */
@@ -7,7 +9,7 @@ public class ItemCommentVO {
     private Integer commentLevel;
     private String content;
     private String specName;
-    private String createdTime;
+    private Date createdTime;
     private String userFace;
     private String nickName;
 
@@ -35,11 +37,11 @@ public class ItemCommentVO {
         this.specName = specName;
     }
 
-    public String getCreatedTime() {
+    public Date getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(String createdTime) {
+    public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 
