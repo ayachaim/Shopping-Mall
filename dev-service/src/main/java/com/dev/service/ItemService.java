@@ -45,8 +45,8 @@ public interface ItemService {
     public CommentCountsVO queryCommentCounts(String itemId);
 
     /**
-     * 根据商品id查询商品具体评价
+     * 根据商品id和level分类查询商品具体评价
      * @param itemId
      */
-    public List<ItemCommentVO> queryItemComments(String itemId);
+    public List<ItemCommentVO> queryItemComments(String itemId,Integer level);
 }

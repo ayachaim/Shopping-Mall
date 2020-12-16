@@ -12,7 +12,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -30,6 +32,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private ItemsCommentsMapper itemsCommentsMapper;
+
+    @Autowired
+    private ItemsMapperCustom itemsMapperCustom;
 
 
     @Transactional(propagation = Propagation.SUPPORTS)
@@ -101,8 +106,10 @@ public class ItemServiceImpl implements ItemService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public List<ItemCommentVO> queryItemComments(String itemId) {
-
-        return null;
+    public List<ItemCommentVO> queryItemComments(String itemId,Integer level) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("itemId",itemId);
+        map.put("level",level);
+        return itemsMapperCustom.queryItemComments(map);
     }
 }
