@@ -10,14 +10,14 @@
         u.face as userFace,
         u.nickname as nickName
     FROM
-        items_comment ic
+        items_comments ic
     LEFT JOIN
         users u
     ON
         ic.user_id = u.id
     WHERE
-        ic.item.id = #{paramsMap.itemId}
-        <if test="paramsMap.level !=null and paramsMap != '' ">
+        ic.item_id = #{paramsMap.itemId}
+        <if test="paramsMap.level !=null and paramsMap.level !=''">
           AND ic.comment_level = #{paramsMap.level}
         </if>
   </select>
