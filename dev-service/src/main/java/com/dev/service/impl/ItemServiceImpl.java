@@ -1,11 +1,14 @@
 package com.dev.service.impl;
 
+import com.dev.Utils.PagedGridResult;
 import com.dev.enums.CommentLevel;
 import com.dev.mapper.*;
 import com.dev.pojo.*;
 import com.dev.pojo.vo.CommentCountsVO;
 import com.dev.pojo.vo.ItemCommentVO;
 import com.dev.service.ItemService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -106,10 +109,29 @@ public class ItemServiceImpl implements ItemService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public List<ItemCommentVO> queryItemComments(String itemId,Integer level) {
+    public PagedGridResult queryItemComments(String itemId,Integer level,Integer page,Integer pageSize) {
         Map<String,Object> map = new HashMap<>();
         map.put("itemId",itemId);
         map.put("level",level);
-        return itemsMapperCustom.queryItemComments(map);
+        //分页插件
+        PageHelper.startPage(page, pageSize);
+        List<ItemCommentVO> list = itemsMapperCustom.queryItemComments(map);
+        return setterGridResult(list,page);
+    }
+
+    /**
+     * 通用的分页插件配置
+     * @param list
+     * @param page
+     * @return
+     */
+    private PagedGridResult setterGridResult(List<?> list,Integer page){
+        PageInfo<?> pageList = new PageInfo<>(list);
+        PagedGridResult grid = new PagedGridResult();
+        grid.setPage(page);
+        grid.setRows(list);
+        grid.setTotal(pageList.getPages());
+        grid.setRecords(pageList.getTotal());
+        return grid;
     }
 }

@@ -1,6 +1,7 @@
 package com.dev.controller;
 
 import com.dev.Utils.JSONResult;
+import com.dev.Utils.PagedGridResult;
 import com.dev.pojo.Items;
 import com.dev.pojo.ItemsImg;
 import com.dev.pojo.ItemsParam;
@@ -25,7 +26,7 @@ import java.util.List;
 @Api(value = "商品详情页面",tags = {"商品详情页面"})
 @RestController
 @RequestMapping("items")
-public class ItemsController {
+public class ItemsController extends BaseController {
 
     @Autowired
     private ItemService itemService;
@@ -56,7 +57,7 @@ public class ItemsController {
         return JSONResult.ok(itemInfoVO);
     }
 
-    @ApiOperation(value = "查询商品评价",notes = "查询商品评价",httpMethod = "GET")
+    @ApiOperation(value = "查询商品评价数量",notes = "查询商品评价数量",httpMethod = "GET")
     @GetMapping("/comment")
     public JSONResult comment(
             @ApiParam(name = "itemId",value = "商品id",required = true)
@@ -67,5 +68,32 @@ public class ItemsController {
         }
         CommentCountsVO commentResult = itemService.queryCommentCounts(itemId);
         return JSONResult.ok(commentResult);
+    }
+
+    @ApiOperation(value = "查询商品具体评价",notes = "查询商品具体评价",httpMethod = "GET")
+    @GetMapping("/commentDetail")
+    public JSONResult commentDetail (
+            @ApiParam(name = "itemId",value = "商品id",required = true)
+            @RequestParam String itemId,
+            @ApiParam(name = "level",value = "分类",required = true)
+            @RequestParam Integer level,
+            @ApiParam(name = "page",value = "页数",required = true)
+            @RequestParam Integer page,
+            @ApiParam(name = "pageSize",value = "每页条数",required = true)
+            @RequestParam Integer pageSize
+    ) {
+        //判断非空
+        if(StringUtils.isBlank(itemId) || level == null){
+            return JSONResult.errorMsg("商品序号和评论等级不能为空");
+        }
+        //默认的limit和offset
+        if(page == null){
+            page = OFFSET;
+        }
+        if(pageSize == null){
+            pageSize = LIMIT;
+        }
+        PagedGridResult commentsResult = itemService.queryItemComments(itemId,level,page,pageSize);
+        return JSONResult.ok(commentsResult);
     }
 }

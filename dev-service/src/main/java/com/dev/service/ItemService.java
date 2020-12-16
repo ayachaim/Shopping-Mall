@@ -1,11 +1,11 @@
 package com.dev.service;
 
+import com.dev.Utils.PagedGridResult;
 import com.dev.pojo.Items;
 import com.dev.pojo.ItemsImg;
 import com.dev.pojo.ItemsParam;
 import com.dev.pojo.ItemsSpec;
 import com.dev.pojo.vo.CommentCountsVO;
-import com.dev.pojo.vo.ItemCommentVO;
 
 import java.util.List;
 
@@ -48,5 +48,5 @@ public interface ItemService {
      * 根据商品id和level分类查询商品具体评价
      * @param itemId
      */
-    public List<ItemCommentVO> queryItemComments(String itemId,Integer level);
+    public PagedGridResult queryItemComments(String itemId, Integer level, Integer page, Integer pageSize);
 }
