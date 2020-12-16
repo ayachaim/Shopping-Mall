@@ -4,6 +4,7 @@ import com.dev.enums.CommentLevel;
 import com.dev.mapper.*;
 import com.dev.pojo.*;
 import com.dev.pojo.vo.CommentCountsVO;
+import com.dev.pojo.vo.ItemCommentVO;
 import com.dev.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -96,5 +97,12 @@ public class ItemServiceImpl implements ItemService {
             condition.setCommentLevel(level);
         }
         return itemsCommentsMapper.selectCount(condition);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public List<ItemCommentVO> queryItemComments(String itemId) {
+
+        return null;
     }
 }
