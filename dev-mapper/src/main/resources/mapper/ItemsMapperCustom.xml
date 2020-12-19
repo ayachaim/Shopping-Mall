@@ -53,10 +53,10 @@
         </if>
         ORDER BY 
         <choose>
-            <when test="paramsMap.sort = 'sell' ">
+            <when test="paramsMap.sort = &quot;sell&quot; ">
                 i.sell_counts desc
             </when>
-            <when test="paramsMap.sort = 'price' ">
+            <when test="paramsMap.sort = &quot;sell&quot; ">
                 tempSpec.price_discount asc
             </when>
             <otherwise>
