@@ -1,63 +1,52 @@
 package com.dev.pojo.vo;
 
-import java.util.Date;
-
 /**
  * 搜索查询商品
  */
 public class SearchItemsVO {
-    private Integer commentLevel;
-    private String content;
-    private String specName;
-    private Date createdTime;
-    private String userFace;
-    private String nickName;
+    private Integer itemId;
+    private String ItemName;
+    private Integer sellCounts;
+    private String imgUrl;
+    private String minPrice;
 
-    public Integer getCommentLevel() {
-        return commentLevel;
+    public Integer getItemId() {
+        return itemId;
     }
 
-    public void setCommentLevel(Integer commentLevel) {
-        this.commentLevel = commentLevel;
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
     }
 
-    public String getContent() {
-        return content;
+    public String getItemName() {
+        return ItemName;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setItemName(String itemName) {
+        ItemName = itemName;
     }
 
-    public String getSpecName() {
-        return specName;
+    public Integer getSellCounts() {
+        return sellCounts;
     }
 
-    public void setSpecName(String specName) {
-        this.specName = specName;
+    public void setSellCounts(Integer sellCounts) {
+        this.sellCounts = sellCounts;
     }
 
-    public Date getCreatedTime() {
-        return createdTime;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
-    public String getUserFace() {
-        return userFace;
+    public String getMinPrice() {
+        return minPrice;
     }
 
-    public void setUserFace(String userFace) {
-        this.userFace = userFace;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setMinPrice(String minPrice) {
+        this.minPrice = minPrice;
     }
 }
