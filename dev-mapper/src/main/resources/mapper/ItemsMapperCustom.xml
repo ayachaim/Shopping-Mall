@@ -48,5 +48,20 @@
             ON i.id = tempSpec.item_id
         WHERE
             ii.is_main = 1
+        <if test="paramsMap.keyWords !=null and paramsMap.keyWords !='' ">
+            AND item_name like '%#{paramsMap.keyWords}%'
+        </if>
+        ORDER BY 
+        <choose>
+            <when test="paramsMap.sort = 'sell' ">
+                i.sell_counts desc
+            </when>
+            <when test="paramsMap.sort = 'price' ">
+                tempSpec.price_discount asc
+            </when>
+            <otherwise>
+                i.item_name asc
+            </otherwise>
+        </choose>
     </select>
 </mapper>
