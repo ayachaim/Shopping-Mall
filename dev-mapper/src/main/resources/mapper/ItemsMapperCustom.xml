@@ -21,4 +21,32 @@
           AND ic.comment_level = #{paramsMap.level}
         </if>
   </select>
+
+    <select id="searchItems" parameterType="Map" resultType="com.dev.pojo.vo.SearchItemsVO">
+        SELECT
+            i.id as itemId,
+            i.item_name as ItemName,
+            i.sell_counts as sellCounts,
+            ii.url as imgUrl,
+            tempSpec.price_discount as minPrice
+        FROM
+            items i
+        LEFT JOIN
+            items_img ii
+        ON
+            i.id = ii.item_id
+        LEFT JOIN
+            (
+            SELECT
+                item_id,MIN(price_discount) as priceDiscount
+            FROM
+                items_spec
+            GROUP BY
+                item_id
+            )
+            tempSpec
+            ON i.id = tempSpec.item_id
+        WHERE
+            ii.is_main = 1
+    </select>
 </mapper>
