@@ -1,5 +1,6 @@
 package com.dev.service.impl;
 
+import com.dev.Utils.DesensitizationUtil;
 import com.dev.Utils.PagedGridResult;
 import com.dev.enums.CommentLevel;
 import com.dev.mapper.*;
@@ -116,6 +117,10 @@ public class ItemServiceImpl implements ItemService {
         //分页插件
         PageHelper.startPage(page, pageSize);
         List<ItemCommentVO> list = itemsMapperCustom.queryItemComments(map);
+        //脱敏
+        for(ItemCommentVO item: list){
+            item.setNickName(DesensitizationUtil.commonDisplay(item.getNickName()));
+        }
         return setterGridResult(list,page);
     }
 
