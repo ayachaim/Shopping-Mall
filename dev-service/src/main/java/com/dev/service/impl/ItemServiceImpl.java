@@ -108,6 +108,26 @@ public class ItemServiceImpl implements ItemService {
         return itemsCommentsMapper.selectCount(condition);
     }
 
+    /**
+     * 模糊搜索
+     * @param keyWords
+     * @param sort
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public PagedGridResult searchItemSpec(String keyWords, String sort, Integer page, Integer pageSize) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("keyWords",keyWords);
+        map.put("sort",sort);
+        //分页插件
+        PageHelper.startPage(page, pageSize);
+        List<ItemCommentVO> list = itemsMapperCustom.queryItemComments(map);
+        return null;
+    }
+
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public PagedGridResult queryItemComments(String itemId,Integer level,Integer page,Integer pageSize) {

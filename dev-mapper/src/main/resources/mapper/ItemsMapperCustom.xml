@@ -22,7 +22,7 @@
         </if>
   </select>
 
-    <select id="searchItems" parameterType="Map" resultType="com.dev.pojo.vo.SearchItemsVO">
+    <select id="searchItemsSpec" parameterType="Map" resultType="com.dev.pojo.vo.SearchItemsVO">
         SELECT
             i.id as itemId,
             i.item_name as ItemName,
