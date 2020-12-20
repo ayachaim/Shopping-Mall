@@ -7,6 +7,7 @@ import com.dev.mapper.*;
 import com.dev.pojo.*;
 import com.dev.pojo.vo.CommentCountsVO;
 import com.dev.pojo.vo.ItemCommentVO;
+import com.dev.pojo.vo.SearchItemsVO;
 import com.dev.service.ItemService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -124,8 +125,8 @@ public class ItemServiceImpl implements ItemService {
         map.put("sort",sort);
         //分页插件
         PageHelper.startPage(page, pageSize);
-        List<ItemCommentVO> list = itemsMapperCustom.queryItemComments(map);
-        return null;
+        List<SearchItemsVO> list = itemsMapperCustom.searchItemsSpec(map);
+        return setterGridResult(list,page);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
