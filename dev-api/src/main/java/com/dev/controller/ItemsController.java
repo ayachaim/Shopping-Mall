@@ -108,9 +108,9 @@ public class ItemsController extends BaseController {
     @ApiOperation(value = "模糊搜索",notes = "模糊搜索",httpMethod = "GET")
     @GetMapping("/searchItems")
     public JSONResult searchItems (
-            @ApiParam(name = "keyWords",value = "输入值",required = true)
+            @ApiParam(name = "keyWords",value = "输入值",required = false)
             @RequestParam String keyWords,
-            @ApiParam(name = "sort",value = "排序",required = true)
+            @ApiParam(name = "sort",value = "排序",required = false)
             @RequestParam String sort,
             @ApiParam(name = "page",value = "页数",required = true)
             @RequestParam Integer page,
