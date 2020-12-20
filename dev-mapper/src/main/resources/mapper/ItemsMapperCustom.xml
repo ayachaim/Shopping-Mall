@@ -56,7 +56,7 @@
             <when test="paramsMap.sort = &quot;sell&quot; ">
                 i.sell_counts desc
             </when>
-            <when test="paramsMap.sort = &quot;sell&quot; ">
+            <when test="paramsMap.sort = &quot;price&quot; ">
                 tempSpec.price_discount asc
             </when>
             <otherwise>

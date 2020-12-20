@@ -7,4 +7,5 @@ public class BaseController {
     //默认 limit = 10
     public static final Integer LIMIT = 10;
     public static final Integer OFFSET = 1;
+    public static final Integer PAGE_SIZE = 20;
 }

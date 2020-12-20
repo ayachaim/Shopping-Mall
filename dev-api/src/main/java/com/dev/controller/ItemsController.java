@@ -97,5 +97,40 @@ public class ItemsController extends BaseController {
         return JSONResult.ok(commentsResult);
     }
 
+    /**
+     * 模糊搜索
+     * @param keyWords
+     * @param sort
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    @ApiOperation(value = "模糊搜索",notes = "模糊搜索",httpMethod = "GET")
+    @GetMapping("/searchItems")
+    public JSONResult searchItems (
+            @ApiParam(name = "keyWords",value = "输入值",required = true)
+            @RequestParam String keyWords,
+            @ApiParam(name = "sort",value = "排序",required = true)
+            @RequestParam String sort,
+            @ApiParam(name = "page",value = "页数",required = true)
+            @RequestParam Integer page,
+            @ApiParam(name = "pageSize",value = "每页条数",required = true)
+            @RequestParam Integer pageSize
+    ) {
+//        //判断非空
+//        if(StringUtils.isBlank(keyWords)){
+//            return JSONResult.errorMsg("搜索值不能为空");
+//        }
+        //默认的limit和offset
+        if(page == null){
+            page = OFFSET;
+        }
+        if(pageSize == null){
+            pageSize = PAGE_SIZE;
+        }
+        PagedGridResult Result = itemService.searchItemSpec(keyWords,sort,page,pageSize);
+        return JSONResult.ok(Result);
+    }
+
 
 }
