@@ -49,4 +49,10 @@ public interface ItemService {
      * @param itemId
      */
     public PagedGridResult queryItemComments(String itemId, Integer level, Integer page, Integer pageSize);
+
+    /**
+     * 搜索
+     * @param itemId
+     */
+    public PagedGridResult searchItemSpec(String itemId, Integer page, Integer pageSize);
 }
