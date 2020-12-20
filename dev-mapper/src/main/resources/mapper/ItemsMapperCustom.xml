@@ -51,7 +51,7 @@
         <if test="paramsMap.keyWords !=null and paramsMap.keyWords !='' ">
             AND item_name like '%#{paramsMap.keyWords}%'
         </if>
-        ORDER BY 
+        ORDER BY
         <choose>
             <when test="paramsMap.sort = &quot;sell&quot; ">
                 i.sell_counts desc
