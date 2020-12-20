@@ -52,7 +52,7 @@ public interface ItemService {
 
     /**
      * 搜索
-     * @param itemId
+     * @param keyWords
      */
-    public PagedGridResult searchItemSpec(String itemId, Integer page, Integer pageSize);
+    public PagedGridResult searchItemSpec(String keyWords,String sort, Integer page, Integer pageSize);
 }
