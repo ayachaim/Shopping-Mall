@@ -146,6 +146,26 @@ public class ItemServiceImpl implements ItemService {
     }
 
     /**
+     * 根据三级标签点击搜索商品列表
+     * @param catId
+     * @param sort
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public PagedGridResult searchItemSpec(Integer catId, String sort, Integer page, Integer pageSize) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("catId",catId);
+        map.put("sort",sort);
+        //分页插件
+        PageHelper.startPage(page, pageSize);
+        List<SearchItemsVO> list = itemsMapperCustom.searchItemsSpec(map);
+        return setterGridResult(list,page);
+    }
+
+    /**
      * 通用的分页插件配置
      * @param list
      * @param page
