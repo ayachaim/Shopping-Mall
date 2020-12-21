@@ -134,13 +134,13 @@ public class ItemsController extends BaseController {
 
     /**
      * 根据三级标签点击搜索商品列表
-     * @param keyWords
+     * @param catId
      * @param sort
      * @param page
      * @param pageSize
      * @return
      */
-    @ApiOperation(value = "模糊搜索",notes = "模糊搜索",httpMethod = "GET")
+    @ApiOperation(value = "根据三级标签点击搜索商品列表",notes = "根据三级标签点击搜索商品列表",httpMethod = "GET")
     @GetMapping("/searchItemsByThirdCat")
     public JSONResult searchItemsByThirdCat (
             @ApiParam(name = "catId",value = "输入值",required = true)
