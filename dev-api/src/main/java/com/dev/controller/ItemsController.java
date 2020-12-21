@@ -132,5 +132,36 @@ public class ItemsController extends BaseController {
         return JSONResult.ok(Result);
     }
 
+    /**
+     * 根据三级标签点击搜索商品列表
+     * @param keyWords
+     * @param sort
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    @ApiOperation(value = "模糊搜索",notes = "模糊搜索",httpMethod = "GET")
+    @GetMapping("/searchItemsByThirdCat")
+    public JSONResult searchItemsByThirdCat (
+            @ApiParam(name = "catId",value = "输入值",required = true)
+            @RequestParam String catId,
+            @ApiParam(name = "sort",value = "排序",required = false)
+            @RequestParam String sort,
+            @ApiParam(name = "page",value = "页数",required = true)
+            @RequestParam Integer page,
+            @ApiParam(name = "pageSize",value = "每页条数",required = true)
+            @RequestParam Integer pageSize
+    ) {
+        //默认的limit和offset
+        if(page == null){
+            page = OFFSET;
+        }
+        if(pageSize == null){
+            pageSize = PAGE_SIZE;
+        }
+        PagedGridResult Result = itemService.searchItemSpec(catId,sort,page,pageSize);
+        return JSONResult.ok(Result);
+    }
+
 
 }
