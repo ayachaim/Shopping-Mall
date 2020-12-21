@@ -161,7 +161,7 @@ public class ItemServiceImpl implements ItemService {
         map.put("sort",sort);
         //分页插件
         PageHelper.startPage(page, pageSize);
-        List<SearchItemsVO> list = itemsMapperCustom.searchItemsSpec(map);
+        List<SearchItemsVO> list = itemsMapperCustom.searchItemsByThirdCat(map);
         return setterGridResult(list,page);
     }
 
