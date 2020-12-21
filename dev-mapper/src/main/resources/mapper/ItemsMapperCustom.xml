@@ -91,9 +91,8 @@
         ON i.id = tempSpec.item_id
         WHERE
         ii.is_main = 1
-        <if test="paramsMap.keyWords !=null and paramsMap.keyWords !='' ">
-            AND item_name like '%#{paramsMap.keyWords}%'
-        </if>
+        and
+        i.cat_id = #{paramsMap.catId}
         ORDER BY
         <choose>
             <when test="paramsMap.sort = &quot;sell&quot; ">
