@@ -26,7 +26,7 @@ public class ShopCartController {
             return JSONResult.errorMsg("用户为空");
         }
         System.out.println(shopCartBo);
-        //TODO
+        //TODO redis
         return JSONResult.ok();
     }
 
