@@ -75,6 +75,7 @@ public class PassportController {
         loginResult = setNullProperty(loginResult);
         //设置cookie
         CookieUtils.setCookie(request,response,"user", JsonUtils.objectToJson(loginResult),true);
+        // TODO token
         return JSONResult.ok();
     }
 

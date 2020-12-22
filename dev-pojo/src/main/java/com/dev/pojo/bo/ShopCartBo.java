@@ -1,25 +1,24 @@
 package com.dev.pojo.bo;
 
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value = "购物车BO",description = "购物车封装实例")
 public class ShopCartBo {
-    @ApiModelProperty(value = "用户名",name = "username",example = "lilei",required = true)
+
     private String itemId;
-    @ApiModelProperty(value = "密码",name = "password",example = "123456",required = true)
+
     private String itemUrl;
-    @ApiModelProperty(value = "确认密码",name = "confirmPassword",example = "123456",required = false)
+
     private String itemName;
-    @ApiModelProperty(value = "确认密码",name = "confirmPassword",example = "123456",required = false)
+
     private String specId;
-    @ApiModelProperty(value = "确认密码",name = "confirmPassword",example = "123456",required = false)
+
     private String specName;
-    @ApiModelProperty(value = "确认密码",name = "confirmPassword",example = "123456",required = false)
+
     private Integer butCounts;
-    @ApiModelProperty(value = "确认密码",name = "confirmPassword",example = "123456",required = false)
+
     private String priceDiscount;
-    @ApiModelProperty(value = "确认密码",name = "confirmPassword",example = "123456",required = false)
+
     private String priceNormal;
 
     public String getItemId() {
@@ -84,5 +83,19 @@ public class ShopCartBo {
 
     public void setPriceNormal(String priceNormal) {
         this.priceNormal = priceNormal;
+    }
+
+    @Override
+    public String toString() {
+        return "ShopCartBo{" +
+                "itemId='" + itemId + '\'' +
+                ", itemUrl='" + itemUrl + '\'' +
+                ", itemName='" + itemName + '\'' +
+                ", specId='" + specId + '\'' +
+                ", specName='" + specName + '\'' +
+                ", butCounts=" + butCounts +
+                ", priceDiscount='" + priceDiscount + '\'' +
+                ", priceNormal='" + priceNormal + '\'' +
+                '}';
     }
 }
