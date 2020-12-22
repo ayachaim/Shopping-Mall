@@ -3,36 +3,86 @@ package com.dev.pojo.bo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "用户对象BO",description = "前端传入用户对象封装实例")
+@ApiModel(value = "购物车BO",description = "购物车封装实例")
 public class ShopCartBo {
     @ApiModelProperty(value = "用户名",name = "username",example = "lilei",required = true)
-    private String username;
+    private String itemId;
     @ApiModelProperty(value = "密码",name = "password",example = "123456",required = true)
-    private String password;
+    private String itemUrl;
     @ApiModelProperty(value = "确认密码",name = "confirmPassword",example = "123456",required = false)
-    private String confirmPassword;
+    private String itemName;
+    @ApiModelProperty(value = "确认密码",name = "confirmPassword",example = "123456",required = false)
+    private String specId;
+    @ApiModelProperty(value = "确认密码",name = "confirmPassword",example = "123456",required = false)
+    private String specName;
+    @ApiModelProperty(value = "确认密码",name = "confirmPassword",example = "123456",required = false)
+    private Integer butCounts;
+    @ApiModelProperty(value = "确认密码",name = "confirmPassword",example = "123456",required = false)
+    private String priceDiscount;
+    @ApiModelProperty(value = "确认密码",name = "confirmPassword",example = "123456",required = false)
+    private String priceNormal;
 
-    public String getUsername() {
-        return username;
+    public String getItemId() {
+        return itemId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 
-    public String getPassword() {
-        return password;
+    public String getItemUrl() {
+        return itemUrl;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setItemUrl(String itemUrl) {
+        this.itemUrl = itemUrl;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public String getSpecId() {
+        return specId;
+    }
+
+    public void setSpecId(String specId) {
+        this.specId = specId;
+    }
+
+    public String getSpecName() {
+        return specName;
+    }
+
+    public void setSpecName(String specName) {
+        this.specName = specName;
+    }
+
+    public Integer getButCounts() {
+        return butCounts;
+    }
+
+    public void setButCounts(Integer butCounts) {
+        this.butCounts = butCounts;
+    }
+
+    public String getPriceDiscount() {
+        return priceDiscount;
+    }
+
+    public void setPriceDiscount(String priceDiscount) {
+        this.priceDiscount = priceDiscount;
+    }
+
+    public String getPriceNormal() {
+        return priceNormal;
+    }
+
+    public void setPriceNormal(String priceNormal) {
+        this.priceNormal = priceNormal;
     }
 }
