@@ -17,7 +17,7 @@ public class ShopCartController {
     @ApiOperation(value = "添加购物车",notes = "添加购物车",httpMethod = "POST")
     @PostMapping("/add")
     public JSONResult add(
-            @RequestParam String userId
+            @RequestParam String userId,
             @RequestBody ShopCartBo shopCartBo,
             HttpServletRequest request,
             HttpServletResponse response
