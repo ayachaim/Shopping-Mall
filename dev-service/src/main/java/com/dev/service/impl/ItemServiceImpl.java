@@ -170,8 +170,7 @@ public class ItemServiceImpl implements ItemService {
         String ids[] = specIds.split(",");
         List<String> specList = new ArrayList<>();
         Collections.addAll(specList,ids);
-        // TODO
-        List list = itemsMapperCustom.queryItemsBySpecIds(specList);
+        List<ShopCartVO> list = itemsMapperCustom.queryItemsBySpecIds(specList);
         return list;
     }
 
