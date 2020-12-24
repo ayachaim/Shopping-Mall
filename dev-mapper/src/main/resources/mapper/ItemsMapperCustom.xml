@@ -106,7 +106,7 @@
             </otherwise>
         </choose>
     </select>
-    <select id="queryItemsBySpecIds" resultType="" parameterType="List">
+    <select id="queryItemsBySpecIds" resultType="com.dev.pojo.vo.ShopCartVO" parameterType="List">
         SELECT
             t_items.id as itemId,
             t_items.name as itemName,
