@@ -124,7 +124,7 @@
         LEFT JOIN
             items_img t_items_img
         ON
-            t_items_img.item_id = t_items_spec.id
+            t_items_img.item_id = t_items.id
         WHERE
             t_items_img.is_main = 1
         AND
