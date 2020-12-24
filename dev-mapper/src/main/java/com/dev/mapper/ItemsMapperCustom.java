@@ -21,5 +21,5 @@ public interface ItemsMapperCustom  {
     /**
      * 购物车
      */
-    public List<ShopCartVO> queryShopCartItems(@Param("paramsList") List<ShopCartItems> list);
+    public List<ShopCartVO> queryItemsBySpecIds(@Param("paramsList") List specIds);
 }

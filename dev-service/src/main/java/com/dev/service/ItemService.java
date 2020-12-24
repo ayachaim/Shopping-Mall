@@ -6,6 +6,7 @@ import com.dev.pojo.ItemsImg;
 import com.dev.pojo.ItemsParam;
 import com.dev.pojo.ItemsSpec;
 import com.dev.pojo.vo.CommentCountsVO;
+import com.dev.pojo.vo.ShopCartVO;
 
 import java.util.List;
 
@@ -61,4 +62,11 @@ public interface ItemService {
      * @param catId
      */
     public PagedGridResult searchItemSpec(Integer catId,String sort, Integer page, Integer pageSize);
+
+    /**
+     * 购物车
+     * @param specIds
+     * @return  List
+     */
+    public List<ShopCartVO> queryItemsBySpecIds(String specIds);
 }
