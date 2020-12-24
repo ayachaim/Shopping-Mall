@@ -106,4 +106,7 @@
             </otherwise>
         </choose>
     </select>
+    <select id="queryItemsBySpecIds" resultType="" parameterType="List">
+
+    </select>
 </mapper>
