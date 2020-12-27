@@ -39,6 +39,21 @@ public class ShopCartController {
         return JSONResult.ok();
     }
 
+    @ApiOperation(value = "删除购物车",notes = "删除购物车",httpMethod = "POST")
+    @PostMapping("/del")
+    public JSONResult del(
+            @RequestParam String userId,
+            @RequestParam String itemSpecId,
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) {
+        if(StringUtils.isBlank(userId) || StringUtils.isBlank(itemSpecId)){
+            return JSONResult.errorMsg("用户和商品id不能为空");
+        }
+        //TODO redis
+        return JSONResult.ok();
+    }
+
 
     @ApiOperation(value = "根据商品规格id查询最新的商品",notes = "根据商品规格id查询最新的商品",httpMethod = "GET")
     @GetMapping("/refresh")
