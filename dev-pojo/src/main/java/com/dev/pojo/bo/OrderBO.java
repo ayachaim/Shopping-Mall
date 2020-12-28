@@ -49,4 +49,15 @@ public class OrderBO {
     public void setLeftMsg(String leftMsg) {
         this.leftMsg = leftMsg;
     }
+
+    @Override
+    public String toString() {
+        return "OrderBO{" +
+                "userId='" + userId + '\'' +
+                ", itemSpecIds='" + itemSpecIds + '\'' +
+                ", addressId='" + addressId + '\'' +
+                ", payMethod=" + payMethod +
+                ", leftMsg='" + leftMsg + '\'' +
+                '}';
+    }
 }
