@@ -20,8 +20,8 @@ public class OrdersController {
     public JSONResult create(
             @RequestBody OrderBO orderBO
     ) {
-        if(orderBO.getPayMethod() != PayMethod.woman){
-
+        if(orderBO.getPayMethod() != PayMethod.weixin.type){
+            JSONResult.errorMsg("支付方式不正确");
         }
         System.out.println(orderBO.toString());
         return JSONResult.ok();

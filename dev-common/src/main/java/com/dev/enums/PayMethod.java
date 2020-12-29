@@ -4,8 +4,8 @@ package com.dev.enums;
  * @Description 支付方式
  */
 public enum PayMethod {
-    woman(1,"微信"),
-    man(2,"支付宝");
+    weixin(1,"微信"),
+    ali(2,"支付宝");
 
     public final Integer type;
     public  final String value;
