@@ -1,6 +1,7 @@
 package com.dev.controller;
 
 import com.dev.Utils.JSONResult;
+import com.dev.enums.PayMethod;
 import com.dev.pojo.bo.OrderBO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,6 +20,9 @@ public class OrdersController {
     public JSONResult create(
             @RequestBody OrderBO orderBO
     ) {
+        if(orderBO.getPayMethod() != PayMethod.woman){
+
+        }
         System.out.println(orderBO.toString());
         return JSONResult.ok();
     }
