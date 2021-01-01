@@ -2,7 +2,9 @@ package com.dev.service.impl;
 
 import com.dev.mapper.OrdersMapper;
 import com.dev.pojo.Orders;
+import com.dev.pojo.UserAddress;
 import com.dev.pojo.bo.OrderBO;
+import com.dev.service.AddressService;
 import com.dev.service.OrderService;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-
+    private AddressService addressService;
     @Autowired
     private OrdersMapper ordersMapper;
     @Autowired
@@ -30,9 +32,18 @@ public class OrderServiceImpl implements OrderService {
         //生成16位订单id
         String orderId = sid.nextShort();
         Orders newOrder = new Orders();
+        //查询
+        UserAddress userAddress = addressService.queryUserAddres(userId,address);
         //设置订单id
         newOrder.setId(orderId);
         newOrder.setUserId(userId);
+        newOrder.setReceiverAddress(userAddress.getProvince() + " "
+                + userAddress.getCity() + " "
+                + userAddress.getDistrict() + " "
+                + userAddress.getDetail());
+        newOrder.setReceiverMobile(userAddress.getMobile());
+        newOrder.setReceiverName(userAddress.getReceiver());
+        newOrder.setTotalAmount();
         //TODO 其他的db字段都要设置进去
     }
 }
