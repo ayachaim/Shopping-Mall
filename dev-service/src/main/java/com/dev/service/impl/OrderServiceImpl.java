@@ -1,5 +1,6 @@
 package com.dev.service.impl;
 
+import com.dev.enums.YesOrNo;
 import com.dev.mapper.OrdersMapper;
 import com.dev.pojo.Orders;
 import com.dev.pojo.UserAddress;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -48,6 +51,12 @@ public class OrderServiceImpl implements OrderService {
 //        newOrder.setRealPayAmount();
         //免费包邮
         newOrder.setPostAmount(postAmount);
+        newOrder.setPayMethod(payMethod);
+        newOrder.setIsComment(YesOrNo.No.type);
+        newOrder.setIsDelete(YesOrNo.No.type);
+        newOrder.setCreatedTime(new Date());
+        newOrder.setUpdatedTime(new Date());
+
 
 
     }
