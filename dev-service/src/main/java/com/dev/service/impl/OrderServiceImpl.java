@@ -43,7 +43,12 @@ public class OrderServiceImpl implements OrderService {
                 + userAddress.getDetail());
         newOrder.setReceiverMobile(userAddress.getMobile());
         newOrder.setReceiverName(userAddress.getReceiver());
+        // TODO 其他的db字段都要设置进去
 //        newOrder.setTotalAmount();
-        //TODO 其他的db字段都要设置进去
+//        newOrder.setRealPayAmount();
+        //免费包邮
+        newOrder.setPostAmount(postAmount);
+
+
     }
 }
