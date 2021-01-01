@@ -2,10 +2,12 @@ package com.dev.service.impl;
 
 import com.dev.enums.YesOrNo;
 import com.dev.mapper.OrdersMapper;
+import com.dev.pojo.ItemsSpec;
 import com.dev.pojo.Orders;
 import com.dev.pojo.UserAddress;
 import com.dev.pojo.bo.OrderBO;
 import com.dev.service.AddressService;
+import com.dev.service.ItemService;
 import com.dev.service.OrderService;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ import java.util.Date;
 
 @Service
 public class OrderServiceImpl implements OrderService {
+    @Autowired
+    private ItemService itemService;
+    @Autowired
     private AddressService addressService;
     @Autowired
     private OrdersMapper ordersMapper;
@@ -57,7 +62,19 @@ public class OrderServiceImpl implements OrderService {
         newOrder.setCreatedTime(new Date());
         newOrder.setUpdatedTime(new Date());
 
-
-
+        //设置子表的信息
+        String idArr[] = itemSpec.split(",");
+        //价格为0
+        Integer totalAmount = 0;
+        //实际价格也为0
+        Integer payAmount = 0;
+        for(String itemId : idArr){
+            //根据子表id查询具体的信息
+            ItemsSpec item = itemService.queryItemSpecById(itemId);
+            // TODO  redis 购物车数量
+            int buyCount = 1;
+            totalAmount += item.getPriceNormal() * buyCount;
+            payAmount += item.getPriceDiscount() * buyCount;
+        }
     }
 }

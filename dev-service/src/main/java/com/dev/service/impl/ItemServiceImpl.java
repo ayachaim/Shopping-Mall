@@ -174,6 +174,12 @@ public class ItemServiceImpl implements ItemService {
         return list;
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public ItemsSpec queryItemSpecById(String id) {
+        return itemsSpecMapper.selectByPrimaryKey(id);
+    }
+
     /**
      * 通用的分页插件配置
      * @param list
