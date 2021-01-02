@@ -1,6 +1,7 @@
 package com.dev.service.impl;
 
 import com.dev.enums.YesOrNo;
+import com.dev.mapper.OrderItemsMapper;
 import com.dev.mapper.OrdersMapper;
 import com.dev.pojo.*;
 import com.dev.pojo.bo.OrderBO;
@@ -23,8 +24,13 @@ public class OrderServiceImpl implements OrderService {
     private AddressService addressService;
     @Autowired
     private OrdersMapper ordersMapper;
+
+    @Autowired
+    private OrderItemsMapper orderItemsMapper;
     @Autowired
     private Sid sid;
+
+
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public void createOrder(OrderBO orderBO) {
@@ -49,9 +55,7 @@ public class OrderServiceImpl implements OrderService {
                 + userAddress.getDetail());
         newOrder.setReceiverMobile(userAddress.getMobile());
         newOrder.setReceiverName(userAddress.getReceiver());
-        // TODO 其他的db字段都要设置进去
-//        newOrder.setTotalAmount();
-//        newOrder.setRealPayAmount();
+
         //免费包邮
         newOrder.setPostAmount(postAmount);
         newOrder.setPayMethod(payMethod);
@@ -59,6 +63,7 @@ public class OrderServiceImpl implements OrderService {
         newOrder.setIsDelete(YesOrNo.No.type);
         newOrder.setCreatedTime(new Date());
         newOrder.setUpdatedTime(new Date());
+        newOrder.setLeftMsg(leftMsg);
 
         //设置子表的信息
         String idArr[] = itemSpec.split(",");
@@ -85,9 +90,16 @@ public class OrderServiceImpl implements OrderService {
             subOrder.setItemName(items.getItemName());
             subOrder.setItemImg(imgUrl);
             subOrder.setBuyCounts(buyCount);
-
+            //设置循环出的子表id
+            subOrder.setItemSpecId(itemId);
+            subOrder.setItemSpecName(item.getName());
+            subOrder.setPrice(item.getPriceDiscount());
+            orderItemsMapper.insert(subOrder);
         }
 
-
+        // 保存订单表的状态
+        newOrder.setTotalAmount(totalAmount);
+        newOrder.setRealPayAmount(payAmount);
+        ordersMapper.insert(newOrder);
     }
 }
