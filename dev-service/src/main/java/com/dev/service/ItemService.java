@@ -82,5 +82,5 @@ public interface ItemService {
      * @param id
      * @return
      */
-    public String queryItemImg(String id);
+    public String queryItemMainImg(String id);
 }

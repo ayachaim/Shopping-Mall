@@ -3,6 +3,7 @@ package com.dev.service.impl;
 import com.dev.Utils.DesensitizationUtil;
 import com.dev.Utils.PagedGridResult;
 import com.dev.enums.CommentLevel;
+import com.dev.enums.YesOrNo;
 import com.dev.mapper.*;
 import com.dev.pojo.*;
 import com.dev.pojo.vo.CommentCountsVO;
@@ -178,6 +179,16 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public ItemsSpec queryItemSpecById(String id) {
         return itemsSpecMapper.selectByPrimaryKey(id);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public String queryItemMainImg(String id) {
+        ItemsImg itemImg = new ItemsImg();
+        itemImg.setItemId(id);
+        itemImg.setIsMain(YesOrNo.Yes.type);
+        ItemsImg result = itemsImgMapper.selectOne(itemImg);
+        return result != null ? result.getUrl() : "";
     }
 
     /**
