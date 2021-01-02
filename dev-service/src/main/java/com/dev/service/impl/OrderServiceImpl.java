@@ -2,6 +2,7 @@ package com.dev.service.impl;
 
 import com.dev.enums.YesOrNo;
 import com.dev.mapper.OrdersMapper;
+import com.dev.pojo.Items;
 import com.dev.pojo.ItemsSpec;
 import com.dev.pojo.Orders;
 import com.dev.pojo.UserAddress;
@@ -75,6 +76,11 @@ public class OrderServiceImpl implements OrderService {
             int buyCount = 1;
             totalAmount += item.getPriceNormal() * buyCount;
             payAmount += item.getPriceDiscount() * buyCount;
+
+            String id = item.getItemId();
+            Items items = itemService.queryItemById(id);
         }
+
+
     }
 }

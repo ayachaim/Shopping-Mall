@@ -76,4 +76,11 @@ public interface ItemService {
      * @return
      */
     public ItemsSpec queryItemSpecById(String id);
+
+    /**
+     * 根据id查询商品主图
+     * @param id
+     * @return
+     */
+    public String queryItemImg(String id);
 }
