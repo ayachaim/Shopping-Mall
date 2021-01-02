@@ -2,10 +2,7 @@ package com.dev.service.impl;
 
 import com.dev.enums.YesOrNo;
 import com.dev.mapper.OrdersMapper;
-import com.dev.pojo.Items;
-import com.dev.pojo.ItemsSpec;
-import com.dev.pojo.Orders;
-import com.dev.pojo.UserAddress;
+import com.dev.pojo.*;
 import com.dev.pojo.bo.OrderBO;
 import com.dev.service.AddressService;
 import com.dev.service.ItemService;
@@ -79,6 +76,16 @@ public class OrderServiceImpl implements OrderService {
 
             String id = item.getItemId();
             Items items = itemService.queryItemById(id);
+            String imgUrl = itemService.queryItemMainImg(id);
+            //把子订单循环设置
+            String subOrderId = sid.nextShort();
+            OrderItems subOrder = new OrderItems();
+            subOrder.setId(subOrderId);
+            subOrder.setOrderId(orderId);
+            subOrder.setItemName(items.getItemName());
+            subOrder.setItemImg(imgUrl);
+            subOrder.setBuyCounts(buyCount);
+
         }
 
 
