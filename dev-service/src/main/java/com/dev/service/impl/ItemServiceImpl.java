@@ -191,6 +191,12 @@ public class ItemServiceImpl implements ItemService {
         return result != null ? result.getUrl() : "";
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void descreaseItemStock(String specId, int buyCount) {
+        //TODO lock
+    }
+
     /**
      * 通用的分页插件配置
      * @param list

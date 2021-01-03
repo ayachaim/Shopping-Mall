@@ -71,11 +71,11 @@ public interface ItemService {
     public List<ShopCartVO> queryItemsBySpecIds(String specIds);
 
     /**
-     * 根据主键id查询商品的
-     * @param id
+     * 商品规格表，根据主键id查询商品的
+     * @param specId
      * @return
      */
-    public ItemsSpec queryItemSpecById(String id);
+    public ItemsSpec queryItemSpecById(String specId);
 
     /**
      * 根据id查询商品主图
@@ -83,4 +83,11 @@ public interface ItemService {
      * @return
      */
     public String queryItemMainImg(String id);
+
+    /**
+     * 商品规格表，下单后删除对应库存
+     * @param specId
+     * @param buyCount
+     */
+    public void descreaseItemStock(String specId,int buyCount);
 }

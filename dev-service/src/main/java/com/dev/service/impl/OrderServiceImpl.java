@@ -98,7 +98,8 @@ public class OrderServiceImpl implements OrderService {
             subOrder.setItemSpecName(item.getName());
             subOrder.setPrice(item.getPriceDiscount());
             orderItemsMapper.insert(subOrder);
-            //扣除库存
+            //用户下单后，商品规格表扣除库存
+
 
         }
 
