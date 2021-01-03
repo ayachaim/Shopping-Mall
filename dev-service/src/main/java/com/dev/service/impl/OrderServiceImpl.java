@@ -1,7 +1,9 @@
 package com.dev.service.impl;
 
+import com.dev.enums.OrdersStatus;
 import com.dev.enums.YesOrNo;
 import com.dev.mapper.OrderItemsMapper;
+import com.dev.mapper.OrderStatusMapper;
 import com.dev.mapper.OrdersMapper;
 import com.dev.pojo.*;
 import com.dev.pojo.bo.OrderBO;
@@ -24,6 +26,8 @@ public class OrderServiceImpl implements OrderService {
     private AddressService addressService;
     @Autowired
     private OrdersMapper ordersMapper;
+    @Autowired
+    private OrderStatusMapper orderStatusMapper;
     @Autowired
     private OrderItemsMapper orderItemsMapper;
     @Autowired
@@ -96,9 +100,15 @@ public class OrderServiceImpl implements OrderService {
             orderItemsMapper.insert(subOrder);
         }
 
-        // 保存订单表的状态
+        // 保存订单表
         newOrder.setTotalAmount(totalAmount);
         newOrder.setRealPayAmount(payAmount);
         ordersMapper.insert(newOrder);
+        //保存订单状态表
+        OrderStatus setOrderStatus = new OrderStatus();
+        setOrderStatus.setOrderId(orderId);
+        setOrderStatus.setOrderStatus(OrdersStatus.WAIT_PAY.type);
+        setOrderStatus.setCreatedTime(new Date());
+
     }
 }
