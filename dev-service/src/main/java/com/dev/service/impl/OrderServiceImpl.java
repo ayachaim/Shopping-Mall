@@ -98,6 +98,8 @@ public class OrderServiceImpl implements OrderService {
             subOrder.setItemSpecName(item.getName());
             subOrder.setPrice(item.getPriceDiscount());
             orderItemsMapper.insert(subOrder);
+            //扣除库存
+
         }
 
         // 保存订单表
@@ -109,6 +111,6 @@ public class OrderServiceImpl implements OrderService {
         setOrderStatus.setOrderId(orderId);
         setOrderStatus.setOrderStatus(OrdersStatus.WAIT_PAY.type);
         setOrderStatus.setCreatedTime(new Date());
-
+        orderStatusMapper.insert(setOrderStatus);
     }
 }
