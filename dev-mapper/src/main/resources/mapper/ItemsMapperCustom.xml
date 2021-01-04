@@ -134,4 +134,8 @@
             #{specId}
         </foreach>
     </select>
+
+    <select id="descreaseItemStock">
+
+    </select>
 </mapper>
