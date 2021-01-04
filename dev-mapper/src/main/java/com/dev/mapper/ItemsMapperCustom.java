@@ -29,5 +29,5 @@ public interface ItemsMapperCustom  {
      * @param pendingCounts
      * @return
      */
-    public int descreaseItemStock(@Param("specId") String specId,@Param("pendingCounts") Integer pendingCounts);
+    public int descreaseItemStock(@Param("specId") String specId,@Param("pendingCounts") int pendingCounts);
 }
