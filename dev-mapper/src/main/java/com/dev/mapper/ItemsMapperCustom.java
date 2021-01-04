@@ -22,4 +22,12 @@ public interface ItemsMapperCustom  {
      * 购物车
      */
     public List<ShopCartVO> queryItemsBySpecIds(@Param("paramsList") List specIds);
+
+    /**
+     * 从库存中扣除的数量
+     * @param specId
+     * @param pendingCounts
+     * @return
+     */
+    public int descreaseItemStock(@Param("specId") String specId,@Param("pendingCounts") Integer pendingCounts);
 }
