@@ -89,5 +89,5 @@ public interface ItemService {
      * @param specId
      * @param buyCount
      */
-    public void descreaseItemStock(String specId,int buyCount);
+    public int descreaseItemStock(String specId,int buyCount);
 }

@@ -93,6 +93,8 @@ public class OrderServiceImpl implements OrderService {
             subOrder.setItemName(items.getItemName());
             subOrder.setItemImg(imgUrl);
             subOrder.setBuyCounts(buyCount);
+            //缺少子表id
+            subOrder.setItemId(itemId);
             //设置循环出的子表id
             subOrder.setItemSpecId(itemId);
             subOrder.setItemSpecName(item.getName());

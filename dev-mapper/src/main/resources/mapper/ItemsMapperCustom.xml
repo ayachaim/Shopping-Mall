@@ -135,7 +135,7 @@
         </foreach>
     </select>
 
-    <select id="descreaseItemStock">
+    <insert id="descreaseItemStock">
         update
             items_spec
         set
@@ -145,5 +145,5 @@
         and
             stock >= #{pendingCounts}
 
-    </select>
+    </insert>
 </mapper>
