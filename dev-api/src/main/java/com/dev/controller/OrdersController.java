@@ -1,5 +1,6 @@
 package com.dev.controller;
 
+import com.dev.Utils.CookieUtils;
 import com.dev.Utils.JSONResult;
 import com.dev.enums.PayMethod;
 import com.dev.pojo.bo.OrderBO;
@@ -12,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Api(value = "订单相关",tags = {"用户下订单的相关api"})
 @RestController
 @RequestMapping("orders")
-public class OrdersController {
+public class OrdersController extends BaseController{
 
     @Autowired
     private OrderService orderService;
@@ -23,8 +27,10 @@ public class OrdersController {
 
     @ApiOperation(value = "用户下单",notes = "用户下单",httpMethod = "POST")
     @PostMapping("/create")
-    public JSONResult create(
-            @RequestBody OrderBO orderBO
+    public JSONResult create (
+            @RequestBody OrderBO orderBO,
+            HttpServletRequest httpServletRequest,
+            HttpServletResponse httpServletResponse
     ) {
         if(orderBO.getPayMethod() != PayMethod.weixin.type){
             JSONResult.errorMsg("支付方式不正确");
@@ -32,6 +38,8 @@ public class OrdersController {
         //创建订单
         orderService.createOrder(orderBO);
         System.out.println(orderBO.toString());
+        // TODO 整合购物车以后，redis需要清除购物车已经结算的商品。更新到cookie
+        CookieUtils.setCookie(httpServletRequest,httpServletResponse,SHOPCARD,"",true);
         return JSONResult.ok();
     }
 
