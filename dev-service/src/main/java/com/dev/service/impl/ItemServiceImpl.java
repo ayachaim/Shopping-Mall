@@ -195,8 +195,9 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void descreaseItemStock(String specId, int buyCount) {
         //TODO lock
+        //result是update matched的条数
         int result = itemsMapperCustom.descreaseItemStock(specId,buyCount);
-        if(result !=1){
+        if(result != 1){
             throw new RuntimeException("创建失败,库存不足！");
         }
     }
