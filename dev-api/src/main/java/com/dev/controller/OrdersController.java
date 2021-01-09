@@ -36,11 +36,11 @@ public class OrdersController extends BaseController{
             JSONResult.errorMsg("支付方式不正确");
         }
         //创建订单
-        orderService.createOrder(orderBO);
+        String orderId = orderService.createOrder(orderBO);
         System.out.println(orderBO.toString());
         // TODO 整合购物车以后，redis需要清除购物车已经结算的商品。更新到cookie
         CookieUtils.setCookie(httpServletRequest,httpServletResponse,SHOPCARD,"",true);
-        return JSONResult.ok();
+        return JSONResult.ok(orderId);
     }
 
 }
