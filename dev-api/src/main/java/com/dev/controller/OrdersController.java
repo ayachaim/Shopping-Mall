@@ -7,6 +7,7 @@ import com.dev.pojo.bo.OrderBO;
 import com.dev.service.OrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +34,12 @@ public class OrdersController extends BaseController{
             HttpServletResponse httpServletResponse
     ) {
         if(orderBO.getPayMethod() != PayMethod.weixin.type){
-            JSONResult.errorMsg("支付方式不正确");
+             return JSONResult.errorMsg("支付方式不正确");
+        }
+        String str = orderBO.getItemSpecIds();
+        boolean ste1 = StringUtils.isBlank(orderBO.getItemSpecIds());
+        if(StringUtils.isBlank(orderBO.getItemSpecIds())){
+            return JSONResult.errorMsg("购物车不能为空");
         }
         //创建订单
         String orderId = orderService.createOrder(orderBO);
