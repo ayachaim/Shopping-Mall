@@ -36,8 +36,6 @@ public class OrdersController extends BaseController{
         if(orderBO.getPayMethod() != PayMethod.weixin.type){
              return JSONResult.errorMsg("支付方式不正确");
         }
-        String str = orderBO.getItemSpecIds();
-        boolean ste1 = StringUtils.isBlank(orderBO.getItemSpecIds());
         if(StringUtils.isBlank(orderBO.getItemSpecIds())){
             return JSONResult.errorMsg("购物车不能为空");
         }
