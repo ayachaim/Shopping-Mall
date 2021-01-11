@@ -47,4 +47,6 @@ public class OrdersController extends BaseController{
         return JSONResult.ok(orderId);
     }
 
+    public JSONResult notify
+
 }
