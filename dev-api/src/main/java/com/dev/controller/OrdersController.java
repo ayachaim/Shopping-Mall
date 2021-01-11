@@ -47,6 +47,10 @@ public class OrdersController extends BaseController{
         return JSONResult.ok(orderId);
     }
 
-    public JSONResult notify
+    @ApiOperation(value = "用户下单",notes = "用户下单",httpMethod = "POST")
+    @PostMapping("/notifyMerchantOrderPaid")
+    public JSONResult notifyMerchantOrderPaid(String merchantOrderId){
+
+    }
 
 }
