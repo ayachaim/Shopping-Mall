@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
     private Sid sid;
 
 
-    @Transactional(propagation = Propagation.SUPPORTS)
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public String createOrder(OrderBO orderBO) {
         String userId =  orderBO.getUserId();
@@ -115,5 +115,16 @@ public class OrderServiceImpl implements OrderService {
         setOrderStatus.setCreatedTime(new Date());
         orderStatusMapper.insert(setOrderStatus);
         return orderId;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void updateOrderStatus(String orderId, Integer orderStatus) {
+        //更新订单状态
+        OrderStatus updateOrderStatus = new OrderStatus();
+        updateOrderStatus.setOrderId(orderId);
+        updateOrderStatus.setOrderStatus(orderStatus);
+        updateOrderStatus.setPayTime(new Date());
+        orderStatusMapper.updateByPrimaryKeySelective(updateOrderStatus);
     }
 }

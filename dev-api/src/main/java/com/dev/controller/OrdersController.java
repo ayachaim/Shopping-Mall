@@ -2,6 +2,7 @@ package com.dev.controller;
 
 import com.dev.Utils.CookieUtils;
 import com.dev.Utils.JSONResult;
+import com.dev.enums.OrdersStatus;
 import com.dev.enums.PayMethod;
 import com.dev.pojo.bo.OrderBO;
 import com.dev.service.OrderService;
@@ -50,7 +51,8 @@ public class OrdersController extends BaseController{
     @ApiOperation(value = "用户下单",notes = "用户下单",httpMethod = "POST")
     @PostMapping("/notifyMerchantOrderPaid")
     public JSONResult notifyMerchantOrderPaid(String merchantOrderId){
-
+        orderService.updateOrderStatus(merchantOrderId, OrdersStatus.WAIT_DELIVER.type);
+        return JSONResult.ok();
     }
 
 }
