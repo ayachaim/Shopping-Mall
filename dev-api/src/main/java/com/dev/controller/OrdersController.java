@@ -40,10 +40,10 @@ public class OrdersController extends BaseController{
         if(StringUtils.isBlank(orderBO.getItemSpecIds())){
             return JSONResult.errorMsg("购物车不能为空");
         }
-        System.out.println(orderBO.toString() + "打印的信息123123123");
-        System.out.println(orderBO.toString() + "打印的信息666666");
+
         //创建订单
         String orderId = orderService.createOrder(orderBO);
+
 
         // TODO 整合购物车以后，redis需要清除购物车已经结算的商品。更新到cookie
         CookieUtils.setCookie(httpServletRequest,httpServletResponse,SHOPCARD,"",true);
