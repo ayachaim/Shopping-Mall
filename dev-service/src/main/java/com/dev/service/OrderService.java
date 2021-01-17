@@ -2,9 +2,10 @@ package com.dev.service;
 
 
 import com.dev.pojo.bo.OrderBO;
+import com.dev.pojo.vo.OrdersVO;
 
 public interface OrderService {
-    public String createOrder(OrderBO orderBO);
+    public OrdersVO createOrder(OrderBO orderBO);
 
     /**
      * 修改订单状态
