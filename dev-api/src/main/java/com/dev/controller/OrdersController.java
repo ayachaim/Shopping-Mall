@@ -52,7 +52,7 @@ public class OrdersController extends BaseController{
 
     @ApiOperation(value = "用户付款以及修改订单状态",notes = "用户付款以及修改订单状态",httpMethod = "POST")
     @PostMapping("/notifyMerchantOrderPaid")
-    public JSONResult notifyMerchantOrderPaid(String merchantOrderId){
+    public JSONResult notifyMerchantOrderPaid(@RequestBody String merchantOrderId){
         orderService.updateOrderStatus(merchantOrderId, OrdersStatus.WAIT_DELIVER.type);
         return JSONResult.ok();
     }
