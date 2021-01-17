@@ -56,6 +56,7 @@ public class OrdersController extends BaseController{
         String orderId = ordersVO.getOrderId();
         MerchantOrdersVO merchantOrdersVO = ordersVO.getMerchantOrdersVO();
         merchantOrdersVO.setReturnUrl(payReturnUrl);
+        merchantOrdersVO.setAmount(1);
         //构建http请求
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
