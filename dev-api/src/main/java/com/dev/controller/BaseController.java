@@ -11,4 +11,5 @@ public class BaseController {
     public static final Integer OFFSET = 1;
     public static final Integer PAGE_SIZE = 20;
     String payReturnUrl = "http://localhost:8088/orders/notifyMerchantOrderPaid";
+    String payMomentURl = "http://payment.t.mukewang.com/foodie-payment/payment/createMerchantOrder";
 }
